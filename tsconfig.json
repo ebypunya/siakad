@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Layout File */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Environment Settings */
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "lib": ["es2022"],
+    "types": ["node"],
+
+    /* Module & Interop Support */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Outputs */
+    "sourceMap": true,
+
+    /* Strict Type-Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+},
+"include": ["src/**/*"]
+}
