@@ -19,7 +19,13 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 
 // 1. Route Alamat Utama (http://localhost)
 app.get('/', (req: Request, res: Response) => {
-res.sendFile(path.join(process.cwd(), 'public', 'login.html'));
+res.send(`
+<div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+<h1>🚀 SIAKAD Backend + Frontend Berhasil Aktif!</h1>
+<p>Server Express & MariaDB berjalan lancar di Port 80.</p>
+<a href="/api/health" style="background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Cek Koneksi Database (API Health)</a>
+</div>
+`);
 });
 
 // 2. Route Cek Koneksi Database (http://localhost/api/health)
