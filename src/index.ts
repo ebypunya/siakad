@@ -17,8 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 // Serve file statis Frontend dari folder public
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-// 1. Route Alamat Utama (http://localhost)
+// 1. Route Alamat Utama (http://localhost) → langsung tampilkan halaman login
 app.get('/', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'login.html'));
+});
+
+// 2. Route status server (opsional, dipindah dari '/' lama)
+app.get('/status', (req: Request, res: Response) => {
 res.send(`
 <div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
 <h1>🚀 SIAKAD Backend + Frontend Berhasil Aktif!</h1>
@@ -28,7 +33,7 @@ res.send(`
 `);
 });
 
-// 2. Route Cek Koneksi Database (http://localhost/api/health)
+// 3. Route Cek Koneksi Database (http://localhost/api/health)
 app.get('/api/health', async (req: Request, res: Response) => {
 try {
 await db.raw('SELECT 1');
