@@ -9,51 +9,73 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 80;
 
-// Middleware
+// Middleware dasar
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve file statis Frontend dari folder public
+// Serve asset statis (gambar, css, js) dari public
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-// 1. Route Alamat Utama (http://localhost) → langsung tampilkan halaman login
+// ==========================================
+// ROUTE HALAMAN (CLEAN URL)
+// ==========================================
+
+// Alamat utama: http://localhost -> Login
 app.get('/', (req: Request, res: Response) => {
 res.sendFile(path.join(process.cwd(), 'public', 'login.html'));
 });
 
-// 2. Route status server (opsional, dipindah dari '/' lama)
-app.get('/status', (req: Request, res: Response) => {
-res.send(`
-<div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
-<h1>🚀 SIAKAD Backend + Frontend Berhasil Aktif!</h1>
-<p>Server Express & MariaDB berjalan lancar di Port 80.</p>
-<a href="/api/health" style="background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Cek Koneksi Database (API Health)</a>
-</div>
-`);
+// http://localhost/login
+app.get('/login', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'login.html'));
 });
 
-// 3. Route Cek Koneksi Database (http://localhost/api/health)
+// http://localhost/register
+app.get('/register', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'register.html'));
+});
+
+// http://localhost/forgot-password
+app.get('/forgot-password', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'forgot-password.html'));
+});
+
+// http://localhost/dashboard
+app.get('/dashboard', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'dashboard.html'));
+});
+
+// http://localhost/krs
+app.get('/krs', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'krs.html'));
+});
+
+// ==========================================
+// ROUTE API BACKEND
+// ==========================================
+
 app.get('/api/health', async (req: Request, res: Response) => {
 try {
-await db.raw('SELECT 1');
+const [rows] = await db.raw('SELECT 1 + 1 AS result');
 res.json({
 status: 'OK',
-message: 'Server SIAKAD & MariaDB terhubung dengan sukses!',
-timestamp: new Date(),
+message: 'Server Express & MariaDB terhubung!',
+testQuery: rows[0]
 });
 } catch (error) {
-res.status(500).json({
-status: 'ERROR',
-message: 'Gagal terhubung ke Database MariaDB',
-error: (error as Error).message,
-});
+res.status(500).json({ status: 'ERROR', message: (error as Error).message });
 }
+});
+
+// Handling 404
+app.use((req: Request, res: Response) => {
+res.status(404).send('<h1 style="text-align:center; margin-top:50px;">404 - Halaman tidak ditemukan</h1>');
 });
 
 // Jalankan Server
 app.listen(PORT, () => {
 console.log(`=================================================`);
-console.log(`🚀 Server SIAKAD aktif di: http://localhost`);
+console.log(`🚀 SIAKAD Clean URL aktif di: http://localhost`);
 console.log(`=================================================`);
 });
