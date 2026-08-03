@@ -36,7 +36,8 @@
         const data = await res.json().catch(() => ({}));
 
         if (res.ok) {
-          window.location.href = '/dashboard.html';
+          localStorage.setItem('siakad_token', data.token);
+          window.location.href = '/dashboard';
         } else {
           alertText.textContent = data.message || 'NIM/Username atau kata sandi salah.';
           alertBox.classList.add('show');

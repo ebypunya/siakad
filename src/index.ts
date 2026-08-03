@@ -3,11 +3,13 @@ import path from 'path';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './config/database.js';
+import authRoutes from './routes/auth.routes.js';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 80;
+//const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 // Middleware dasar
 app.use(cors());
@@ -16,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve asset statis (gambar, css, js) dari public
 app.use(express.static(path.join(process.cwd(), 'public')));
+app.use('/api/auth', authRoutes);
 
 // ==========================================
 // ROUTE HALAMAN (CLEAN URL)

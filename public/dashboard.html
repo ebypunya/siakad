@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — SIAKAD UkCorelabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <div class="brand-mark">SC</div>
+        <div class="brand-text">SIAKAD <span>UkCorelabs</span></div>
+      </div>
+
+      <ul class="nav-list">
+        <li class="nav-item active">
+          <a href="/dashboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" data-soon="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+            Kartu Rencana Studi
+            <span class="badge-soon">Segera</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" data-soon="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Jadwal Kuliah
+            <span class="badge-soon">Segera</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" data-soon="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>
+            Nilai &amp; KHS
+            <span class="badge-soon">Segera</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" data-soon="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            Profil Saya
+            <span class="badge-soon">Segera</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-foot">
+        <button class="logout-btn" id="btnLogout" type="button">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+          Keluar
+        </button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h1>Dashboard</h1>
+        </div>
+
+        <div class="user-chip" id="userChip">
+          <div class="avatar" id="userAvatar">--</div>
+          <div>
+            <div class="u-name" id="userName">Memuat...</div>
+            <div class="u-role" id="userRole">&nbsp;</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="welcome-card">
+          <div>
+            <p class="eyebrow">Selamat datang kembali</p>
+            <h2 id="welcomeName">—</h2>
+            <p class="sub" id="welcomeSub">Menyiapkan data akun kamu…</p>
+          </div>
+          <div class="welcome-glyph">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </div>
+        </section>
+
+        <section class="stat-grid" id="statGrid">
+          <div class="stat-card">
+            <div class="stat-icon icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <p class="stat-label">NIM / Username</p>
+            <p class="stat-value" id="statNim">—</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <p class="stat-label">Peran</p>
+            <p class="stat-value" id="statRole">—</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            </div>
+            <p class="stat-label">Status Akun</p>
+            <p class="stat-value" id="statStatus">—</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-indigo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <p class="stat-label">Terdaftar Sejak</p>
+            <p class="stat-value" id="statJoined">—</p>
+          </div>
+        </section>
+
+        <section class="info-banner">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <p>Akun kamu belum terhubung dengan data akademik (jurusan, angkatan). Hubungi bagian BAAK atau tunggu proses verifikasi admin agar menu Kartu Rencana Studi, Jadwal, dan Nilai bisa diakses.</p>
+        </section>
+
+        <h3 class="section-title">Menu Akademik</h3>
+        <section class="menu-grid">
+          <div class="menu-card" data-soon="true">
+            <div class="menu-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+            </div>
+            <p class="menu-title">Kartu Rencana Studi</p>
+            <p class="menu-desc">Ambil dan atur mata kuliah semester ini.</p>
+            <span class="badge-soon dark">Segera hadir</span>
+          </div>
+          <div class="menu-card" data-soon="true">
+            <div class="menu-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <p class="menu-title">Jadwal Kuliah</p>
+            <p class="menu-desc">Lihat jadwal kelas & ruangan mingguan.</p>
+            <span class="badge-soon dark">Segera hadir</span>
+          </div>
+          <div class="menu-card" data-soon="true">
+            <div class="menu-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>
+            </div>
+            <p class="menu-title">Nilai &amp; KHS</p>
+            <p class="menu-desc">Pantau nilai dan IP semester berjalan.</p>
+            <span class="badge-soon dark">Segera hadir</span>
+          </div>
+          <div class="menu-card" data-soon="true">
+            <div class="menu-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            </div>
+            <p class="menu-title">Profil Saya</p>
+            <p class="menu-desc">Perbarui data diri dan kata sandi.</p>
+            <span class="badge-soon dark">Segera hadir</span>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      </div>
+      <h3>Keluar dari akun?</h3>
+      <p>Kamu perlu masuk kembali untuk mengakses SIAKAD UkCorelabs.</p>
+      <div class="modal-actions">
+        <button class="btn-ghost" id="cancelLogout" type="button">Batal</button>
+        <button class="btn-danger" id="confirmLogout" type="button">Ya, Keluar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
