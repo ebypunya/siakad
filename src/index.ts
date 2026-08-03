@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './config/database.js';
 import authRoutes from './routes/auth.routes.js';
+import profileRoutes from './routes/profile.routes.js';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 // Serve asset statis (gambar, css, js) dari public
 app.use(express.static(path.join(process.cwd(), 'public')));
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 
 // ==========================================
 // ROUTE HALAMAN (CLEAN URL)
@@ -47,6 +49,11 @@ res.sendFile(path.join(process.cwd(), 'public', 'forgot-password.html'));
 // http://localhost/dashboard
 app.get('/dashboard', (req: Request, res: Response) => {
 res.sendFile(path.join(process.cwd(), 'public', 'dashboard.html'));
+});
+
+// http://localhost/profil
+app.get('/profil', (req: Request, res: Response) => {
+res.sendFile(path.join(process.cwd(), 'public', 'profil.html'));
 });
 
 // http://localhost/krs

@@ -56,4 +56,7 @@ verification_token: null,
 verification_token_expires: null,
 });
 },
+async updatePassword(id: number, password_hash: string) {
+await db<UserRecord>(TABLE).where({ id }).update({ password_hash });
+},
 };

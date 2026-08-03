@@ -1,0 +1,109 @@
+/* ==========================================================
+   SIAKAD UkCorelabs — Profil Saya
+   Dipakai bersama dashboard.css (menyediakan shell + variabel warna)
+   ========================================================== */
+
+.profile-hero{
+  display:flex; align-items:center; gap:22px;
+  background:linear-gradient(120deg, var(--navy-950), var(--indigo-600) 120%);
+  border-radius:20px; padding:26px 28px;
+  color:#fff;
+  box-shadow:0 20px 40px -20px rgba(16,27,76,.5);
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+.profile-avatar-lg{
+  width:76px; height:76px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg, var(--gold-400), var(--gold-300));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:26px; color:var(--navy-950);
+}
+.profile-hero-info{ min-width:0; }
+.profile-hero-top{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.profile-hero-top h2{ margin:0; font-family:'Space Grotesk',sans-serif; font-size:21px; }
+.profile-ident{ margin:4px 0 10px; font-size:13.5px; color:rgba(255,255,255,.78); word-break:break-word; }
+
+.role-pill{
+  display:inline-flex; align-items:center;
+  font-size:11px; font-weight:700; letter-spacing:.02em; text-transform:capitalize;
+  padding:4px 11px; border-radius:20px;
+  background:rgba(255,255,255,.16); color:#fff;
+}
+.role-pill.mahasiswa{ background:rgba(59,91,219,.32); }
+.role-pill.dosen{ background:rgba(244,183,64,.32); }
+.role-pill.pegawai{ background:rgba(22,163,74,.32); }
+.role-pill.admin{ background:rgba(220,38,38,.32); }
+
+.status-pill{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11.5px; font-weight:700;
+  padding:4px 11px; border-radius:20px;
+}
+.status-pill.aktif{ background:rgba(22,163,74,.2); color:#bbf7d0; }
+.status-pill.cuti{ background:rgba(244,183,64,.22); color:#ffe4a3; }
+.status-pill.lulus{ background:rgba(59,91,219,.24); color:#c7d2fe; }
+.status-pill.drop_out{ background:rgba(220,38,38,.24); color:#fecaca; }
+.status-pill.nonaktif{ background:rgba(220,38,38,.24); color:#fecaca; }
+
+.profile-alert{
+  display:none;
+  padding:12px 16px; border-radius:12px; font-size:13.2px; margin-bottom:18px;
+}
+.profile-alert.show{ display:block; }
+.profile-alert.success{ background:var(--success-bg); border:1px solid var(--success-border); color:var(--success-text); }
+.profile-alert.error{ background:#fef2f2; border:1px solid #fecaca; color:#b91c1c; }
+
+.info-card{
+  background:var(--white); border:1px solid #e6e9f2; border-radius:16px;
+  padding:22px 24px; margin-bottom:20px;
+}
+.info-card-title{
+  font-family:'Space Grotesk',sans-serif; font-size:15px; margin:0 0 18px; color:var(--navy-950);
+}
+.info-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px 24px;
+}
+.info-item{ min-width:0; }
+.info-label{
+  margin:0 0 4px; font-size:11.5px; font-weight:700; letter-spacing:.02em;
+  color:var(--slate-500); text-transform:uppercase;
+}
+.info-value{ margin:0; font-size:14.5px; font-weight:600; color:var(--navy-950); word-break:break-word; }
+.info-value.muted{ color:var(--slate-400); font-weight:500; }
+
+.profile-grid-2{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;
+}
+
+.form-group{ margin-bottom:16px; }
+.form-group label{
+  display:block; font-size:12.5px; font-weight:600; color:var(--slate-500); margin-bottom:7px;
+}
+.form-group input{
+  width:100%; padding:12px 14px; font-size:14px; font-family:'Inter',sans-serif;
+  border:1.5px solid #e3e6ee; border-radius:10px; outline:none;
+  background:var(--bg-light); color:var(--navy-950);
+  transition:border-color .18s, box-shadow .18s, background-color .18s;
+}
+.form-group input:focus{
+  background:var(--white); border-color:var(--indigo-500);
+  box-shadow:0 0 0 4px rgba(59,91,219,.13);
+}
+
+.btn-save{
+  padding:11px 20px; border:none; border-radius:10px;
+  background:linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+  color:#fff; font-weight:700; font-size:13.8px; cursor:pointer;
+  transition:transform .18s, box-shadow .18s;
+  box-shadow:0 10px 20px -8px rgba(37,65,178,.5);
+}
+.btn-save:hover{ transform:translateY(-2px); }
+.btn-save:disabled{ opacity:.65; cursor:not-allowed; transform:none; }
+
+.form-feedback{ margin:10px 0 0; font-size:12.5px; min-height:16px; }
+.form-feedback.success{ color:var(--success-text); }
+.form-feedback.error{ color:#b91c1c; }
+
+@media (max-width:560px){
+  .profile-hero{ flex-direction:column; align-items:flex-start; text-align:left; }
+}

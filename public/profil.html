@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya — SIAKAD UkCorelabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/profil.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+    <!-- Sidebar, overlay mobile, dan modal logout otomatis di-inject oleh sidebar.js -->
+
+    <div class="main">
+      <header class="topbar">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h1>Profil Saya</h1>
+        </div>
+
+        <div class="user-chip" id="userChip">
+          <div class="avatar" id="userAvatar">--</div>
+          <div>
+            <div class="u-name" id="userName">Memuat...</div>
+            <div class="u-role" id="userRole">&nbsp;</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <section class="profile-hero" id="profileHero">
+          <div class="profile-avatar-lg" id="profileAvatarLg">--</div>
+          <div class="profile-hero-info">
+            <div class="profile-hero-top">
+              <h2 id="profileName">—</h2>
+              <span class="role-pill" id="profileRolePill">—</span>
+            </div>
+            <p class="profile-ident" id="profileIdent">—</p>
+            <div id="profileStatusWrap"></div>
+          </div>
+        </section>
+
+        <div class="profile-alert" id="profileAlert"></div>
+
+        <section class="info-card">
+          <h3 class="info-card-title">Informasi Akademik &amp; Kepegawaian</h3>
+          <div class="info-grid" id="infoGrid">
+            <!-- diisi otomatis via profil.js sesuai role -->
+          </div>
+        </section>
+
+        <div class="profile-grid-2">
+          <section class="info-card">
+            <h3 class="info-card-title">Perbarui Nomor HP</h3>
+            <form id="noHpForm">
+              <div class="form-group">
+                <label for="noHpInput">Nomor HP</label>
+                <input type="text" id="noHpInput" placeholder="Contoh: 081234567890" inputmode="tel">
+              </div>
+              <button type="submit" class="btn-save" id="btnSaveNoHp">Simpan Nomor HP</button>
+              <p class="form-feedback" id="noHpFeedback"></p>
+            </form>
+          </section>
+
+          <section class="info-card">
+            <h3 class="info-card-title">Ubah Kata Sandi</h3>
+            <form id="passwordForm">
+              <div class="form-group">
+                <label for="oldPassword">Kata Sandi Lama</label>
+                <input type="password" id="oldPassword" autocomplete="current-password" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Kata Sandi Baru</label>
+                <input type="password" id="newPassword" autocomplete="new-password" placeholder="Minimal 8 karakter" required>
+              </div>
+              <div class="form-group">
+                <label for="confirmNewPassword">Konfirmasi Kata Sandi Baru</label>
+                <input type="password" id="confirmNewPassword" autocomplete="new-password" required>
+              </div>
+              <button type="submit" class="btn-save" id="btnSavePassword">Ubah Kata Sandi</button>
+              <p class="form-feedback" id="passwordFeedback"></p>
+            </form>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/sidebar.js"></script>
+  <script src="assets/js/profil.js"></script>
+</body>
+</html>
