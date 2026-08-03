@@ -8,7 +8,10 @@ async register(req: Request, res: Response) {
 try {
 const user = await authService.register(req.body);
 const { password_hash, ...safeUser } = user!;
-res.status(201).json({ message: 'Registrasi berhasil.', user: safeUser });
+res.status(201).json({
+message: 'Registrasi berhasil. Silakan cek email kamu untuk verifikasi sebelum login.',
+user: safeUser,
+});
 } catch (err) {
 if (err instanceof AuthError) return res.status(err.status).json({ message: err.message });
 console.error(err);
@@ -25,6 +28,20 @@ res.json({ message: 'Login berhasil.', token, user: safeUser });
 if (err instanceof AuthError) return res.status(err.status).json({ message: err.message });
 console.error(err);
 res.status(500).json({ message: 'Terjadi kesalahan pada server.' });
+}
+},
+
+async verifyEmail(req: Request, res: Response) {
+try {
+const token = req.query.token as string;
+await authService.verifyEmail(token);
+res.redirect('/?verified=1');
+} catch (err) {
+if (err instanceof AuthError) {
+return res.redirect(`/?verified=0&msg=${encodeURIComponent(err.message)}`);
+}
+console.error(err);
+res.redirect('/?verified=0&msg=Terjadi%20kesalahan%20server.');
 }
 },
 

@@ -1,5 +1,7 @@
 /* ==========================================================
    dashboard.js — logika halaman dashboard SIAKAD UkCorelabs
+   (sidebar, toggle menu, dan logout kini dihandle oleh
+   sidebar.js — file ini fokus ke data profil halaman ini saja)
    ========================================================== */
 
    document.addEventListener('DOMContentLoaded', () => {
@@ -10,31 +12,6 @@
       window.location.href = '/';
       return;
     }
-
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const btnLogout = document.getElementById('btnLogout');
-    const logoutModal = document.getElementById('logoutModal');
-    const cancelLogout = document.getElementById('cancelLogout');
-    const confirmLogout = document.getElementById('confirmLogout');
-
-    function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('show');
-    }
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-    }
-    menuToggle?.addEventListener('click', openSidebar);
-    overlay?.addEventListener('click', closeSidebar);
-
-    document.querySelectorAll('[data-soon]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-      });
-    });
 
     function initials(name) {
       if (!name) return '--';
@@ -93,23 +70,5 @@
       }
     }
 
-  // ---------- Logout (satu-satunya handler, dengan konfirmasi) ----------
-  function openLogoutModal() {
-    logoutModal.classList.add('show');
-  }
-  function closeLogoutModal() {
-    logoutModal.classList.remove('show');
-  }
-
-  btnLogout?.addEventListener('click', openLogoutModal);
-  cancelLogout?.addEventListener('click', closeLogoutModal);
-  logoutModal?.addEventListener('click', (e) => {
-    if (e.target === logoutModal) closeLogoutModal();
+    loadProfile();
   });
-  confirmLogout?.addEventListener('click', () => {
-    localStorage.removeItem(TOKEN_KEY);
-    window.location.href = '/';
-  });
-
-  loadProfile();
-});

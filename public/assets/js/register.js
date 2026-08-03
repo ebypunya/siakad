@@ -100,9 +100,16 @@
           body: JSON.stringify({ fullname, nim, email, password }),
         });
         const data = await res.json().catch(() => ({}));
-
         if (res.ok) {
-          window.location.href = 'login.html';
+          form.style.display = 'none';
+          alertBox.classList.remove('show');
+          const successMsg = document.createElement('div');
+          successMsg.className = 'alert show';
+          successMsg.style.background = '#f0fdf4';
+          successMsg.style.borderColor = '#dcfce7';
+          successMsg.style.color = '#16a34a';
+          successMsg.innerHTML = `<span>Registrasi berhasil! Silakan cek email <strong>${email}</strong> untuk verifikasi akun sebelum login.</span>`;
+          form.parentNode.insertBefore(successMsg, form);
         } else {
           alertText.textContent = data.message || 'Pendaftaran gagal, silakan coba lagi.';
           alertBox.classList.add('show');

@@ -1,6 +1,8 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import { userRepository } from '../repositories/user.repository.js';
+import { mailService } from './mail.service.js';
 
 export class AuthError extends Error {
 status: number;
@@ -33,7 +35,7 @@ if (existingEmail) throw new AuthError('Email sudah terdaftar.');
 
 const password_hash = await bcrypt.hash(password, 10);
 
-return userRepository.create({
+const user = await userRepository.create({
 nomor_induk: nim,
 username: nim,
 nama_lengkap: fullname,
@@ -42,6 +44,14 @@ password_hash,
 role: 'mahasiswa',
 is_active: true,
 });
+
+const token = crypto.randomBytes(32).toString('hex');
+const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 jam
+
+await userRepository.setVerificationToken(user!.id, token, expires);
+await mailService.sendVerificationEmail(email, fullname, token);
+
+return user;
 },
 
 async login(input: LoginInput) {
@@ -56,6 +66,9 @@ if (!user) throw new AuthError('NIM/Username atau kata sandi salah.', 401);
 const isMatch = await bcrypt.compare(password, user.password_hash);
 if (!isMatch) throw new AuthError('NIM/Username atau kata sandi salah.', 401);
 if (!user.is_active) throw new AuthError('Akun tidak aktif.', 403);
+if (!user.email_verified_at) {
+throw new AuthError('Email belum diverifikasi. Silakan cek inbox atau folder spam kamu.', 403);
+}
 
 const token = jwt.sign(
 { id: user.id, role: user.role, username: user.username },
@@ -64,5 +77,19 @@ process.env.JWT_SECRET || 'secret',
 );
 
 return { token, user };
+},
+
+async verifyEmail(token: string) {
+if (!token) throw new AuthError('Token verifikasi tidak ditemukan.', 400);
+
+const user = await userRepository.findByVerificationToken(token);
+if (!user) throw new AuthError('Token verifikasi tidak valid.', 400);
+
+if (user.verification_token_expires && new Date() > new Date(user.verification_token_expires)) {
+throw new AuthError('Tautan verifikasi sudah kedaluwarsa. Silakan daftar ulang.', 400);
+}
+
+await userRepository.markEmailVerified(user.id);
+return user;
 },
 };

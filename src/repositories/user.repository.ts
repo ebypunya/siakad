@@ -12,6 +12,9 @@ mahasiswa_id: number | null;
 dosen_id: number | null;
 pegawai_id: number | null;
 is_active: boolean;
+verification_token: string | null;
+verification_token_expires: Date | null;
+email_verified_at: Date | null;
 }
 
 const TABLE = 'users';
@@ -32,8 +35,25 @@ return db<UserRecord>(TABLE)
 .orWhere({ nomor_induk: identifier })
 .first();
 },
+findByVerificationToken(token: string) {
+return db<UserRecord>(TABLE).where({ verification_token: token }).first();
+},
 async create(data: Partial<UserRecord>) {
 const [id] = await db<UserRecord>(TABLE).insert(data);
 return db<UserRecord>(TABLE).where({ id }).first();
+},
+async setVerificationToken(id: number, token: string, expires: Date) {
+await db<UserRecord>(TABLE)
+.where({ id })
+.update({ verification_token: token, verification_token_expires: expires });
+},
+async markEmailVerified(id: number) {
+await db<UserRecord>(TABLE)
+.where({ id })
+.update({
+email_verified_at: new Date(),
+verification_token: null,
+verification_token_expires: null,
+});
 },
 };
