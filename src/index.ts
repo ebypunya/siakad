@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import db from './config/database.js';
 import authRoutes from './routes/auth.routes.js';
 import profileRoutes from './routes/profile.routes.js';
+import krsRoutes from './routes/krs.routes.js';
 
 dotenv.config();
 
@@ -17,10 +18,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
 // Serve asset statis (gambar, css, js) dari public
 app.use(express.static(path.join(process.cwd(), 'public')));
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
+
+app.use('/api/krs', krsRoutes);
 
 // ==========================================
 // ROUTE HALAMAN (CLEAN URL)

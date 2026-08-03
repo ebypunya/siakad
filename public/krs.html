@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Rencana Studi — SIAKAD UkCorelabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/krs.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Sidebar, overlay mobile, dan modal logout otomatis di-inject oleh sidebar.js -->
+
+    <div class="main">
+      <header class="topbar">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h1>Kartu Rencana Studi</h1>
+        </div>
+
+        <div class="user-chip" id="userChip">
+          <div class="avatar" id="userAvatar">--</div>
+          <div>
+            <div class="u-name" id="userName">Memuat...</div>
+            <div class="u-role" id="userRole">&nbsp;</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="krs-alert" id="krsAlert"></div>
+
+        <!-- State: periode belum dibuka -->
+        <section class="krs-empty-state" id="periodClosedState" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <h3>Periode KRS belum dibuka</h3>
+          <p>Tunggu pengumuman dari BAAK atau hubungi admin untuk informasi jadwal pengisian KRS.</p>
+        </section>
+
+        <div id="krsMainContent" style="display:none;">
+
+          <!-- Header periode + status -->
+          <section class="krs-period-card">
+            <div class="krs-period-info">
+              <p class="eyebrow" id="periodLabel">—</p>
+              <h2 id="periodTitle">Kartu Rencana Studi</h2>
+            </div>
+            <div class="krs-period-side">
+              <span class="krs-status-pill" id="krsStatusPill">—</span>
+              <div class="krs-sks-box">
+                <span class="krs-sks-value" id="sksValue">0</span>
+                <span class="krs-sks-max">/ <span id="sksMax">24</span> SKS</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Catatan penolakan (kalau ada) -->
+          <div class="krs-reject-note" id="rejectNote" style="display:none;"></div>
+
+          <!-- Mata kuliah diambil -->
+          <section class="info-card">
+            <div class="krs-card-head">
+              <h3 class="info-card-title" style="margin:0;">Mata Kuliah Diambil</h3>
+              <button class="btn-save" id="btnSubmitKrs" type="button">Ajukan KRS</button>
+            </div>
+
+            <div class="krs-taken-list" id="takenList">
+              <p class="krs-muted-text">Memuat data KRS kamu...</p>
+            </div>
+          </section>
+
+          <!-- Mata kuliah tersedia -->
+          <section class="info-card">
+            <h3 class="info-card-title">Mata Kuliah Tersedia</h3>
+            <div class="krs-available-list" id="availableList">
+              <p class="krs-muted-text">Memuat daftar mata kuliah...</p>
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/sidebar.js"></script>
+  <script src="assets/js/krs.js"></script>
+</body>
+</html>
